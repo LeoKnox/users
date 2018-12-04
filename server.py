@@ -25,10 +25,26 @@ def go():
 @app.route("/one/<id1>")
 def oneuser(id1):
     mysql = connectToMySQL('user_list')
-    oneuser = mysql.query_db('SELECT * FROM users WHERE id=%s', (id1))
+    oneuser = mysql.query_db('SELECT * FROM users WHERE id= %s' % id1)
+    # SELECT MAX(id) FROM users
+    #oneuser = mysql.query_db('SELECT * FROM users WHERE id=2')
     print(oneuser)
 
     return render_template("one.html", use = oneuser)
+
+@app.route("/edit")
+def goto():
+    mysql = connectToMySQL('user_list')
+    return render_template("updateuser.html")
+
+@app.route("/edituser/<id2>", methods=["POST"])
+def edit(id2):
+    mysql = connectToMySQL('user_list')
+    #edituser = mysql.query_db('SELECT * FROM users WHERE id = %s' % id2)
+    edituser = mysql.query_db('SELECT * FROM users WHERE id = 2')
+    print(edituser)
+
+    return redirect('userlist.html', us = edituser)
     
 
 @app.route("/read")

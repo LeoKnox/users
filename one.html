@@ -3,12 +3,14 @@
 
     </head>
     <body>
+        {% for us in use %}
         <h2>User </h2>
         <br>
-        <p>Full Name: {{use["fname"]}}</p>
-        <p>Email:</p>
-        <p>Created On:</p>
-        <p>Last Updated On:</p>
+        <p>Full Name: {{us["fname"]}} {{us["lname"]}}</p>
+        <p>Email: {{us["email"]}}</p>
+        <p>Created On: {{us["created"]}}</p>
+        <p>Last Updated On:{{us["updated"]}}</p>
+        {% endfor %}
         <br>
         <a href="">Edit</a>|<a href="/newuser">Delete</a>
     </body>
